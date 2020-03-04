@@ -7,13 +7,13 @@ class RedisConnection {
         this.client = redis.createClient(process.env.REDISRS_PORT);
         this.client.on('connect', () => console.log("connected to redis"));
         this.client.on('error', () => console.log("error trying to connect with redis"));
-
     }
     getClient() {
         return this.client;
-    }   
+    }
     async find(key) {
-        return await this.getClient().getAsync(key).catch(() => null);
+        return await this.getClient().getAsync(key)
+        .catch(() => null);
     }
     async create(key, value) {
         return await this.getClient().setAsync(key, value)
@@ -28,7 +28,6 @@ class RedisConnection {
     async update(key, newValue) {
         return 'string' === typeof await this.find(key) ? await this.create(key, newValue) : new Error('failing updating element');
     }
-
 }
 
 module.exports = new RedisConnection();

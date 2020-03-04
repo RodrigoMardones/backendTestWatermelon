@@ -16,6 +16,7 @@ class Server {
     }
 
     config(){
+        // middlewares and routes
         this.app.use(cors());
         this.app.use(morgan('dev'));
         this.app.use(express.json());

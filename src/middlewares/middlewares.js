@@ -1,7 +1,6 @@
 const Validator = require('./validators/validators');
 
 
-
 class CustomMiddlewares {
     static async bodyValidationLogin(req, res, next){
         const body = req.body;
